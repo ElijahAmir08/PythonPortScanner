@@ -63,6 +63,9 @@ def main():
         print("Invalid target. Please enter a valid IP address or domain name.")
         exit(1)
     start_time = datetime.now()  # Calls current date and time to be printed for user
+    if output_file:
+        with open(output_file, 'a') as f:
+            f.write(f"Scan started at: {start_time}\n")
     print("Scanning started at: ", start_time)
     for port in range(start_port, end_port + 1):  # Loop through the given range by user, and scan each port
         if scan_port(target_ip, port, timeout):
@@ -79,8 +82,12 @@ def main():
                 with open(output_file, 'a') as f:
                     f.write(result + '\n')
     finish_time = datetime.now()
-    print("Scanning finished at: ", finish_time)
-    print("Total duration: ", finish_time - start_time)
+    final_message = f"Scan finished at: {finish_time}\nTotal duration: {finish_time - start_time}\n"
+    print(final_message)
+    if output_file:
+        with open(output_file, 'a') as f:
+            f.write(f"Scan finished at: {finish_time}\n")
+            f.write(f"Total duration: {finish_time - start_time}\n")
     
 
 if __name__ == "__main__":
