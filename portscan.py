@@ -64,7 +64,7 @@ def main():
         exit(1)
     start_time = datetime.now()  # Calls current date and time to be printed for user
     if output_file:
-        with open(output_file, 'a') as f:
+        with open(output_file, 'w') as f:
             f.write(f"Scan started at: {start_time}\n")
     print("Scanning started at: ", start_time)
     for port in range(start_port, end_port + 1):  # Loop through the given range by user, and scan each port
